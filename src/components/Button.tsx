@@ -10,11 +10,13 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const base =
-    "px-6 py-3 rounded-lg font-medium transition-colors duration-200 cursor-pointer";
+    "px-6 py-3 rounded-lg font-medium transition-all duration-300 cursor-pointer";
 
   const variants = {
-    primary: "bg-white text-black hover:bg-gray-200",
-    outline: "border border-white text-white hover:bg-white hover:text-black",
+    primary:
+      "bg-gradient-to-r from-[#a78bfa] to-[#60a5fa] text-white glow-sm hover:brightness-110",
+    outline:
+      "border border-white/15 text-white hover:border-[#a78bfa]/50 hover:shadow-[0_0_20px_rgba(167,139,250,0.1)]",
   };
 
   return (

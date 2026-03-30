@@ -58,9 +58,8 @@ export default function Experience() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {/* Heading */}
           <motion.div variants={fadeUp(0)} className="mb-14">
-            <p className="text-sm tracking-widest uppercase text-gray-400 mb-3">
+            <p className="text-sm tracking-widest uppercase section-label mb-3 font-medium">
               Experience
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold">
@@ -68,10 +67,9 @@ export default function Experience() {
             </h2>
           </motion.div>
 
-          {/* Timeline */}
           <div className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-[7px] top-2 bottom-2 w-px bg-white/10 hidden sm:block" />
+            {/* Vertical line with gradient */}
+            <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-[#a78bfa]/30 via-[#60a5fa]/20 to-transparent hidden sm:block" />
 
             <div className="space-y-12">
               {jobs.map((job, i) => (
@@ -82,26 +80,24 @@ export default function Experience() {
                 >
                   {/* Dot */}
                   <div className="absolute left-0 top-2 hidden sm:block">
-                    <div className="h-[15px] w-[15px] rounded-full border-2 border-white/30 bg-black" />
+                    <div className="h-[15px] w-[15px] rounded-full border-2 border-[#a78bfa]/40 bg-[#050505] shadow-[0_0_8px_rgba(167,139,250,0.2)]" />
                   </div>
 
-                  {/* Card */}
-                  <motion.div whileHover={cardHover} className="border border-white/10 rounded-2xl p-6 sm:p-8 hover:border-white/25 hover:bg-white/[0.03] transition-all duration-300">
+                  <motion.div whileHover={cardHover} className="glass rounded-2xl p-6 sm:p-8 transition-all duration-300">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-4">
                       <div>
                         <h3 className="text-xl font-bold">{job.company}</h3>
                         <p className="text-sm text-gray-400">{job.role}</p>
                       </div>
-                      <span className="text-sm font-mono text-gray-500">
+                      <span className="text-sm font-mono text-[#a78bfa]/60">
                         {job.period}
                       </span>
                     </div>
 
-                    {/* Contributions */}
                     <div className="space-y-3 mb-6">
                       {job.contributions.map((c) => (
                         <div key={c} className="flex gap-3 items-start">
-                          <span className="mt-1.5 block h-1.5 w-1.5 rounded-full bg-white/40 shrink-0" />
+                          <span className="mt-1.5 block h-1.5 w-1.5 rounded-full bg-[#a78bfa]/40 shrink-0" />
                           <p className="text-sm text-gray-400 leading-relaxed">
                             {c}
                           </p>
@@ -109,12 +105,11 @@ export default function Experience() {
                       ))}
                     </div>
 
-                    {/* Tech */}
                     <div className="flex flex-wrap gap-2">
                       {job.tech.map((t) => (
                         <span
                           key={t}
-                          className="text-xs px-3 py-1 rounded-full border border-white/10 text-gray-400"
+                          className="text-xs px-3 py-1 rounded-full border border-white/[0.06] bg-white/[0.03] text-gray-400"
                         >
                           {t}
                         </span>

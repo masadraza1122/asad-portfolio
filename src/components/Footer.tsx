@@ -11,7 +11,7 @@ export default function Footer() {
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
       variants={fadeUp(0)}
-      className="border-t border-white/10 py-8"
+      className="border-t border-white/[0.06] py-8"
     >
       <Container className="flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-sm text-gray-500">

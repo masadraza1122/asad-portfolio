@@ -8,9 +8,6 @@ import SectionWrapper from "@/components/SectionWrapper";
 import Button from "@/components/Button";
 import { fadeUp } from "@/lib/animations";
 
-const inputStyles =
-  "w-full bg-transparent border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-gray-500 outline-none focus:border-white/40 transition-colors duration-200";
-
 export default function Contact() {
   return (
     <SectionWrapper id="contact">
@@ -20,9 +17,8 @@ export default function Contact() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {/* Heading */}
           <motion.div variants={fadeUp(0)} className="mb-14">
-            <p className="text-sm tracking-widest uppercase text-gray-400 mb-3">
+            <p className="text-sm tracking-widest uppercase section-label mb-3 font-medium">
               Contact
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold">
@@ -31,7 +27,6 @@ export default function Contact() {
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Left — Info */}
             <motion.div variants={fadeUp(0.1)}>
               <p className="text-gray-400 leading-relaxed mb-8 max-w-md">
                 Have a project in mind or want to discuss an opportunity? Feel
@@ -44,7 +39,7 @@ export default function Contact() {
                   href="mailto:asadraza@email.com"
                   className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors duration-200 group"
                 >
-                  <span className="flex items-center justify-center w-10 h-10 rounded-lg border border-white/10 group-hover:border-white/25 transition-colors duration-200">
+                  <span className="flex items-center justify-center w-10 h-10 rounded-lg glass group-hover:border-[#a78bfa]/30 transition-all duration-200">
                     <HiOutlineMail className="text-lg" />
                   </span>
                   <span className="text-sm">asadraza@email.com</span>
@@ -56,7 +51,7 @@ export default function Contact() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors duration-200 group"
                 >
-                  <span className="flex items-center justify-center w-10 h-10 rounded-lg border border-white/10 group-hover:border-white/25 transition-colors duration-200">
+                  <span className="flex items-center justify-center w-10 h-10 rounded-lg glass group-hover:border-[#a78bfa]/30 transition-all duration-200">
                     <FaLinkedinIn className="text-lg" />
                   </span>
                   <span className="text-sm">LinkedIn Profile</span>
@@ -64,7 +59,6 @@ export default function Contact() {
               </div>
             </motion.div>
 
-            {/* Right — Form */}
             <motion.form
               variants={fadeUp(0.2)}
               className="space-y-5"
@@ -78,7 +72,7 @@ export default function Contact() {
                   id="name"
                   type="text"
                   placeholder="Your name"
-                  className={inputStyles}
+                  className="w-full input-glass rounded-lg px-4 py-3 text-sm text-white placeholder-gray-500 outline-none"
                   required
                 />
               </div>
@@ -91,7 +85,7 @@ export default function Contact() {
                   id="email"
                   type="email"
                   placeholder="you@example.com"
-                  className={inputStyles}
+                  className="w-full input-glass rounded-lg px-4 py-3 text-sm text-white placeholder-gray-500 outline-none"
                   required
                 />
               </div>
@@ -104,7 +98,7 @@ export default function Contact() {
                   id="message"
                   rows={5}
                   placeholder="Tell me about your project..."
-                  className={`${inputStyles} resize-none`}
+                  className="w-full input-glass rounded-lg px-4 py-3 text-sm text-white placeholder-gray-500 outline-none resize-none"
                   required
                 />
               </div>
