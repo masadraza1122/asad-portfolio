@@ -106,7 +106,7 @@ export default function Projects() {
                 variants={fadeUp(0.1 + i * 0.1)}
                 whileHover={{
                   y: -6,
-                  transition: { duration: 0.3, ease: "easeOut" },
+                  transition: { duration: 0.3, ease: "easeOut" as const },
                 }}
                 className="group relative glass rounded-3xl overflow-hidden transition-all duration-500 hover:border-[#a78bfa]/20 hover:shadow-[0_0_60px_rgba(167,139,250,0.06)]"
               >

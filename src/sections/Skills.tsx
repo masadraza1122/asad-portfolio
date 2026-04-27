@@ -139,7 +139,7 @@ export default function Skills() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.3, ease: "easeOut" as const }}
               className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
             >
               {activeCategory.skills.map((skill, i) => (
@@ -147,10 +147,10 @@ export default function Skills() {
                   key={skill.name}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.35, delay: i * 0.05, ease: "easeOut" }}
+                  transition={{ duration: 0.35, delay: i * 0.05, ease: "easeOut" as const }}
                   whileHover={{
                     y: -5,
-                    transition: { duration: 0.25, ease: "easeOut" },
+                    transition: { duration: 0.25, ease: "easeOut" as const },
                   }}
                   className="group relative glass rounded-2xl p-5 flex flex-col items-center gap-3 transition-all duration-300 hover:border-[#a78bfa]/30 hover:shadow-[0_0_30px_rgba(167,139,250,0.08)]"
                 >

@@ -1,4 +1,4 @@
-import type { Variants } from "framer-motion";
+import type { TargetAndTransition, Variants } from "framer-motion";
 
 export const fadeUp = (delay: number = 0): Variants => ({
   hidden: { opacity: 0, y: 30 },
@@ -16,7 +16,7 @@ export const staggerContainer: Variants = {
   },
 };
 
-export const cardHover = {
+export const cardHover: TargetAndTransition = {
   y: -4,
   transition: { duration: 0.25, ease: "easeOut" },
 };

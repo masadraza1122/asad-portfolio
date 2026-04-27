@@ -15,7 +15,7 @@ interface Job {
 
 const jobs: Job[] = [
   {
-    company: "Barq Fintech",
+    company: "MyTm",
     role: "Senior Frontend Engineer",
     period: "2025 — Present",
     contributions: [
