@@ -16,7 +16,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center pt-16 overflow-hidden"
+      className="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden"
     >
       {/* Animated glow orbs */}
       <div className="orb-1 absolute top-[-15%] left-[-8%] w-[500px] h-[500px] rounded-full bg-purple-500/[0.12] blur-[140px]" />
