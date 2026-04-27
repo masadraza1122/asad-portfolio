@@ -36,17 +36,17 @@ export default function Contact() {
 
               <div className="space-y-4">
                 <a
-                  href="mailto:asadraza@email.com"
+                  href="mailto:masadraza110@gmail.com"
                   className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors duration-200 group"
                 >
                   <span className="flex items-center justify-center w-10 h-10 rounded-lg glass group-hover:border-[#a78bfa]/30 transition-all duration-200">
                     <HiOutlineMail className="text-lg" />
                   </span>
-                  <span className="text-sm">asadraza@email.com</span>
+                  <span className="text-sm">masadraza110@gmail.com</span>
                 </a>
 
                 <a
-                  href="https://linkedin.com/in/"
+                  href="https://www.linkedin.com/in/muhammadasadrazabukhari/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors duration-200 group"
