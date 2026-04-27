@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { HiOutlineMail } from "react-icons/hi";
 import { FaLinkedinIn } from "react-icons/fa";
@@ -8,7 +9,79 @@ import SectionWrapper from "@/components/SectionWrapper";
 import Button from "@/components/Button";
 import { fadeUp } from "@/lib/animations";
 
+type Status = "idle" | "loading" | "success" | "error";
+
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export default function Contact() {
+  const [form, setForm] = useState<FormData>({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [status, setStatus] = useState<Status>("idle");
+  const [feedback, setFeedback] = useState<string>("");
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setForm((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const name = form.name.trim();
+    const email = form.email.trim();
+    const message = form.message.trim();
+
+    if (!name || !email || !message) {
+      setStatus("error");
+      setFeedback("Please fill in all fields.");
+      return;
+    }
+
+    if (!EMAIL_REGEX.test(email)) {
+      setStatus("error");
+      setFeedback("Please enter a valid email address.");
+      return;
+    }
+
+    setStatus("loading");
+    setFeedback("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      const data = (await res.json()) as { error?: string };
+
+      if (!res.ok) {
+        throw new Error(data.error || "Something went wrong.");
+      }
+
+      setStatus("success");
+      setFeedback("Message sent successfully!");
+      setForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      setStatus("error");
+      setFeedback(
+        err instanceof Error ? err.message : "Failed to send message."
+      );
+    }
+  };
+
+  const isLoading = status === "loading";
+
   return (
     <SectionWrapper id="contact">
       <Container>
@@ -62,7 +135,8 @@ export default function Contact() {
             <motion.form
               variants={fadeUp(0.2)}
               className="space-y-5"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubmit}
+              noValidate
             >
               <div>
                 <label htmlFor="name" className="block text-sm text-gray-400 mb-2">
@@ -74,6 +148,9 @@ export default function Contact() {
                   placeholder="Your name"
                   className="w-full input-glass rounded-lg px-4 py-3 text-sm text-white placeholder-gray-500 outline-none"
                   required
+                  value={form.name}
+                  onChange={handleChange}
+                  disabled={isLoading}
                 />
               </div>
 
@@ -87,6 +164,9 @@ export default function Contact() {
                   placeholder="you@example.com"
                   className="w-full input-glass rounded-lg px-4 py-3 text-sm text-white placeholder-gray-500 outline-none"
                   required
+                  value={form.email}
+                  onChange={handleChange}
+                  disabled={isLoading}
                 />
               </div>
 
@@ -100,12 +180,35 @@ export default function Contact() {
                   placeholder="Tell me about your project..."
                   className="w-full input-glass rounded-lg px-4 py-3 text-sm text-white placeholder-gray-500 outline-none resize-none"
                   required
+                  value={form.message}
+                  onChange={handleChange}
+                  disabled={isLoading}
                 />
               </div>
 
-              <Button type="submit" className="w-full sm:w-auto">
-                Send Message
+              <Button
+                type="submit"
+                className="w-full sm:w-auto disabled:opacity-60 disabled:cursor-not-allowed"
+                disabled={isLoading}
+              >
+                {isLoading ? "Sending..." : "Send Message"}
               </Button>
+
+              {feedback && (
+                <p
+                  role="status"
+                  aria-live="polite"
+                  className={`text-sm ${
+                    status === "success"
+                      ? "text-emerald-400"
+                      : status === "error"
+                      ? "text-red-400"
+                      : "text-gray-400"
+                  }`}
+                >
+                  {feedback}
+                </p>
+              )}
             </motion.form>
           </div>
         </motion.div>
